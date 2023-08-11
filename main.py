@@ -27,4 +27,18 @@ if __name__ == "__main__":
     cell_one = Cell(point_one, point_two, new_maze)
     cell_one.draw(point_one, point_four)
 
+    # draw a move between cells
+
+    cell_one_point_one = Point(250, 250)
+    cell_one_point_two = Point(275, 275)
+    cell_start = Cell(cell_one_point_one, cell_one_point_two, new_maze)
+    cell_start.draw(cell_one_point_one, cell_one_point_two)
+
+    cell_two_point_one = Point(275, 275)
+    cell_two_point_two = Point(300, 300)
+    cell_end = Cell(cell_two_point_one, cell_two_point_two, new_maze)
+    cell_end.draw(cell_two_point_one, cell_two_point_two)
+
+    cell_start.draw_move(cell_end, undo=True)
+
     new_maze.wait_for_close()
