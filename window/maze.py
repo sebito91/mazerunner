@@ -19,18 +19,23 @@ class Maze:
         self._cell_size_y = cell_size_y
         self._win = win
 
+        print(f"SEBTEST -- created maze! {self}")
+
         self._create_cells()
 
     def _create_cells(self):
         """Create the cells for the maze."""
+        print(f"SEBTEST -- creating cells...")
         self._cells = [[self._draw_cell(col, row) for row in range(self._num_rows)] for col in range(self._num_cols)]
+        print(f"SEBTEST -- done creating cells...")
 
     def _draw_cell(self, col, row):
         """Draw out the individual cell given the column and row it represents."""
         top_left = Point(self._x1 + (col * self._cell_size_x), self._y1 + (row * self._cell_size_y))
-        bottom_right = Point(self._x1 + (col * self._cell_size_x), self._y1 + (row * self._cell_size_y))
+        bottom_right = Point(self._x1 + ((col + 1) * self._cell_size_x), self._y1 + ((row + 1) * self._cell_size_y))
 
         cell = Cell(top_left, bottom_right, self._win)
+        print(f"SEBTEST -- created a cell! {cell}")
 
         cell.draw(top_left, bottom_right)
         self._animate()
@@ -40,4 +45,4 @@ class Maze:
     def _animate(self):
         """Animate the cell and pause for a period."""
         self._win.redraw()
-        time.sleep(0.5)
+        time.sleep(0.05)

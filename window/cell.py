@@ -64,3 +64,7 @@ class Cell:
         line_end = Point((to_cell.x1 + (abs(to_cell.x1 - to_cell.x2) // 2)), (to_cell.y1 + (abs(to_cell.y1 - to_cell.y2) // 2)))
 
         self._win.draw_line(Line(line_start, line_end), color)
+
+    def __str__(self):
+        """Print out the cell object signature."""
+        return f"cell is at top-left ({self.x1}, {self.y1}) and bottom-right ({self.x2}, {self.y2})"

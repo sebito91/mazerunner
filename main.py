@@ -3,6 +3,8 @@
 from window.cell import Cell
 from window.window import Line, Point, Window
 
+from window.maze import Maze
+
 
 if __name__ == "__main__":
     new_maze = Window(800, 600)
@@ -40,5 +42,7 @@ if __name__ == "__main__":
     cell_end.draw(cell_two_point_one, cell_two_point_two)
 
     cell_start.draw_move(cell_end, undo=True)
+
+    new_new_maze = Maze(100, 200, 10, 10, 25, 25, new_maze)
 
     new_maze.wait_for_close()
