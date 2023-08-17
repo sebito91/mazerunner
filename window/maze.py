@@ -3,13 +3,13 @@
 import time
 
 from window.cell import Cell
-from window.window import Point
+from window.window import Point, Window
 
 
 class Maze:
     """Object to store the maze window and attributes."""
 
-    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win):
+    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win=None):
         """Initialize the maze itself."""
         self._x1 = x1
         self._y1 = y1
@@ -39,5 +39,6 @@ class Maze:
 
     def _animate(self):
         """Animate the cell and pause for a period."""
-        self._win.redraw()
+        if self._win:
+            self._win.redraw()
         time.sleep(0.05)
