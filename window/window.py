@@ -14,7 +14,7 @@ class Window:
         self.__root.title("Maze Runner in all its glory!")
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
 
-        self.__canvas = Canvas(self.__root, {"height": height, "width": width})
+        self.__canvas = Canvas(self.__root, {"height": height, "width": width, "bg": "white"})
         self.__canvas.pack()
 
     def redraw(self):

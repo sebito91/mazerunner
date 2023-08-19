@@ -24,6 +24,7 @@ class Maze:
     def _create_cells(self):
         """Create the cells for the maze."""
         self._cells = [[self._draw_cell(col, row) for row in range(self._num_rows)] for col in range(self._num_cols)]
+        self._break_entrance_and_exit()
 
     def _draw_cell(self, col, row):
         """Draw out the individual cell given the column and row it represents."""
@@ -42,3 +43,17 @@ class Maze:
         if self._win:
             self._win.redraw()
         time.sleep(0.05)
+
+    def _break_entrance_and_exit(self):
+        """Break up the entrance and exit Cell objects to allow for the maze ingress and egress."""
+        self._cells[0][0].has_top_wall = False
+        self._cells[self._num_cols - 1][self._num_rows - 1].has_bottom_wall = False
+
+        entrance_top_left = Point(self._x1, self._y1)
+        entrance_bottom_right = Point(self._x1 + self._cell_size_x, self._y1 + self._cell_size_y)
+
+        exit_top_left = Point(self._x1 + ((self._num_cols - 1) * self._cell_size_x), self._y1 + ((self._num_rows - 1) * self._cell_size_y))
+        exit_bottom_right = Point(self._x1 + (self._num_cols * self._cell_size_x), self._y1 + (self._num_rows * self._cell_size_y))
+
+        self._cells[0][0].draw(entrance_top_left, entrance_bottom_right)
+        self._cells[self._num_cols - 1][self._num_rows - 1].draw(exit_top_left, exit_bottom_right)

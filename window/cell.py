@@ -13,6 +13,11 @@ class Cell:
         self.has_top_wall = True
         self.has_bottom_wall = True
 
+        self._left_wall_color = "black"
+        self._right_wall_color = "black"
+        self._top_wall_color = "black"
+        self._bottom_wall_color = "black"
+
         self._x1 = p1.x
         self._x2 = p2.x
         self._y1 = p1.y
@@ -38,25 +43,30 @@ class Cell:
 
     def draw(self, top_left, bottom_right):
         """Draw out the cell using the top-left Point and bottom-right Point given."""
-        if self.has_left_wall:
-            line = Line(top_left, Point(top_left.x, bottom_right.y))
-            if self._win:
-                self._win.draw_line(line, "green")
+        if not self._win:
+            return
 
-        if self.has_right_wall:
-            line = Line(Point(bottom_right.x, top_left.y), bottom_right)
-            if self._win:
-                self._win.draw_line(line, "blue")
+        left_wall = Line(top_left, Point(top_left.x, bottom_right.y))
+        right_wall = Line(Point(bottom_right.x, top_left.y), bottom_right)
+        top_wall = Line(top_left, Point(bottom_right.x, top_left.y))
+        bottom_wall = Line(Point(top_left.x, bottom_right.y), bottom_right)
 
-        if self.has_top_wall:
-            line = Line(top_left, Point(bottom_right.x, top_left.y))
-            if self._win:
-                self._win.draw_line(line, "yellow")
+        if not self.has_left_wall:
+            self._left_wall_color = "white"
 
-        if self.has_bottom_wall:
-            line = Line(Point(top_left.x, bottom_right.y), bottom_right)
-            if self._win:
-                self._win.draw_line(line, "red")
+        if not self.has_right_wall:
+            self._right_wall_color = "white"
+
+        if not self.has_top_wall:
+            self._top_wall_color = "white"
+
+        if not self.has_bottom_wall:
+            self._bottom_wall_color = "white"
+
+        self._win.draw_line(left_wall, self._left_wall_color)
+        self._win.draw_line(right_wall, self._right_wall_color)
+        self._win.draw_line(top_wall, self._top_wall_color)
+        self._win.draw_line(bottom_wall, self._bottom_wall_color)
 
     def draw_move(self, to_cell, undo=False):
         """Draw out a move from one cell to another."""
