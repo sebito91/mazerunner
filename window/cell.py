@@ -12,6 +12,7 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+        self.visited = False
 
         self._left_wall_color = "black"
         self._right_wall_color = "black"
@@ -22,6 +23,9 @@ class Cell:
         self._x2 = p2.x
         self._y1 = p1.y
         self._y2 = p2.y
+
+        self._p1 = p1
+        self._p2 = p2
 
         self._win = window
 
@@ -40,6 +44,14 @@ class Cell:
     @property
     def y2(self):
         return self._y2
+
+    @property
+    def p1(self):
+        return self._p1
+
+    @property
+    def p2(self):
+        return self._p2
 
     def draw(self, top_left, bottom_right):
         """Draw out the cell using the top-left Point and bottom-right Point given."""
