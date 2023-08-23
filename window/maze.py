@@ -67,14 +67,11 @@ class Maze:
 
     def _break_walls_r(self, col, row):
         """Break down walls throughout the maze using a breadth-first recursive search."""
-        print(f"SEBTEST -- visiting col {col} and row {row}")
         if not 0 <= col < self._num_cols or not 0 <= row < self._num_rows:
-            print(f"SEBTEST - returning early, col: {col}, row: {row}")
             return
 
         self._cells[col][row].visited = True
         while True:
-            print(f"SEBTEST -- entering loop again from col {col} and row {row}")
             to_visit = []
 
             if col - 1 >= 0 and not self._cells[col - 1][row].visited:
@@ -89,9 +86,7 @@ class Maze:
             if row + 1 < self._num_rows and not self._cells[col][row + 1].visited:
                 to_visit.append((col, row + 1))
 
-            print(f"SEBTEST -- to_visit: {to_visit} from col {col} and row {row}")
             if len(to_visit) == 0:
-                print(f"SEBTEST -- no more places to visit, to_visit: {to_visit} from col {col} and row {row}")
                 self._cells[col][row].draw(self._cells[col][row].p1, self._cells[col][row].p2)
                 return
 
